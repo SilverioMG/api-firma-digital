@@ -1,11 +1,14 @@
+server:
+  servlet:
+    context-path: /api
 spring:
   application:
-    name: firmadigital
+    name: apifirmadigital
   datasource:
     url: jdbc:h2:mem:firmadigitaldb
     driverClassName: org.h2.Driver
     username: sa
-    password: sa
+    password:
   h2:
     console:
       enabled: true
@@ -18,3 +21,5 @@ spring:
       schema-locations: classpath:schema.ddl
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: none

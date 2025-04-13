@@ -53,7 +53,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.01:8080/api/signdocument",
+					"raw": "http://127.0.01:8080/api/signaturedocument",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -63,7 +63,7 @@
 					"port": "8080",
 					"path": [
 						"api",
-						"signdocument"
+						"signaturedocument"
 					]
 				}
 			},

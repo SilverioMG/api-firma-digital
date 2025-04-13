@@ -95,18 +95,4 @@ public class KeyStoreDao {
         return Paths.get(keyStoreDirPath, fileName).toString();
     }
 
-    private void checkSignature(PrivateKey privateKey, PublicKey publicKey) throws Exception {
-        String message = "Prueba de firma digital";
-        Signature signature = Signature.getInstance("SHA256withRSA");
-
-        // Firmar
-        signature.initSign(privateKey);
-        signature.update(message.getBytes());
-        byte[] signedData = signature.sign();
-
-        // Verificar
-        signature.initVerify(publicKey);
-        signature.update(message.getBytes());
-        boolean isValid = signature.verify(signedData);
-    }
 }

@@ -32,15 +32,15 @@ public class SignatureDocumentUseCase {
         }
 
         PrivateKey privateKey = userKeyRepository.getPrivateKey(keyStore, userName);
-        String digitalSignature = signDocumentService.buildSignature(documentBase64, privateKey, userName);
+        String digitalSignatureBase64 = signDocumentService.buildSignature(documentBase64, privateKey, userName);
 
-        return new SignatureDocumentQuery(digitalSignature);
+        return new SignatureDocumentQuery(digitalSignatureBase64);
     }
 
     private void validateCommand(SignatureDocumentCommand command) {
         if(command == null) throw new SignatureDocumentValidationException("Valor incorrecto para 'command': " + command);
         if(StringUtils.isBlank(command.userName())) throw new SignatureDocumentValidationException("Valor incorrecto para 'userName': " +command.userName());
-        if(!Base64Validator.validate(command.documentBase64())) throw new SignatureDocumentValidationException("Codificación no base64 para 'documentBase64");
+        if(!Base64Validator.isBase64(command.documentBase64())) throw new SignatureDocumentValidationException("Codificación no base64 para 'documentBase64");
         if(!Base64Validator.isPdf(command.documentBase64())) throw new SignatureDocumentValidationException("Formato no 'pdf' para 'documentBase64'");
     }
 }

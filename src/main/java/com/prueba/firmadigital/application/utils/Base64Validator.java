@@ -5,7 +5,7 @@ import java.util.Base64;
 
 public class Base64Validator {
 
-    public static boolean validate(String inputBase64) {
+    public static boolean isBase64(String inputBase64) {
         if (StringUtils.isBlank(inputBase64)) {
 
             return false;

@@ -1,14 +1,11 @@
 package com.prueba.firmadigital.application.verifysignaturedocument;
 
 import com.prueba.firmadigital.application.UserKeyRepository;
-import com.prueba.firmadigital.application.signaturedocument.SignatureDocumentValidationException;
 import com.prueba.firmadigital.application.utils.Base64Validator;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.security.KeyStore;
-import java.security.PrivateKey;
-import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
 
 @Component
@@ -32,7 +29,8 @@ public class VerifysignaturedocumentUseCase {
 
         KeyStore keyStore = userKeyRepository.loadKeyStore(userName).orElse(null);
         if(keyStore == null) {
-            throw new SignatureDocumentValidationException("No existen claves guadadas para el usuario: " + userName);
+
+            throw new VerifySignatureDocumentValidationException("No existen claves guadadas para el usuario: " + userName);
         }
 
         X509Certificate publicKey = userKeyRepository.getCertificate(keyStore, userName);

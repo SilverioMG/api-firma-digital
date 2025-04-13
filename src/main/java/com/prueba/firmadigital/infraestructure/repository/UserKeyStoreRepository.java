@@ -32,6 +32,7 @@ public class UserKeyStoreRepository implements UserKeyRepository {
             return keyStoreDao.loadKeyStore(userName, KEY_STORE_PASSWORD, KEYSTORE_DIR_PATH);
         }
         catch(Exception ex) {
+
             throw new UserKeyRepositoryException("Error recuperando el keyStore para el usuario: " + userName, ex);
         }
     }
@@ -44,6 +45,7 @@ public class UserKeyStoreRepository implements UserKeyRepository {
             keyStoreDao.saveToKeyStore(keyPair, userName, alias, KEY_STORE_PASSWORD, KEYSTORE_DIR_PATH);
         }
         catch(Exception ex) {
+
             throw new UserKeyRepositoryException("Error guardando keys para el usuario: " + userName, ex);
         }
     }
@@ -54,6 +56,7 @@ public class UserKeyStoreRepository implements UserKeyRepository {
             String alias = userName;
             return (PrivateKey) keyStore.getKey(alias, KEY_STORE_PASSWORD.toCharArray());
         } catch (Exception ex) {
+
             throw new UserKeyRepositoryException("Error recuperando 'privateKey' para el usuario: " + userName, ex);
         }
 
@@ -66,6 +69,7 @@ public class UserKeyStoreRepository implements UserKeyRepository {
             return (X509Certificate) keyStore.getCertificate(alias);
         }
         catch(Exception ex) {
+
             throw new UserKeyRepositoryException("Error recuperando 'certificate' (publicKey) para el usuario: " + userName, ex);
         }
     }

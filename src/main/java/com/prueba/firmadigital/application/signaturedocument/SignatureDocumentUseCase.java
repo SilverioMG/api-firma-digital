@@ -28,6 +28,7 @@ public class SignatureDocumentUseCase {
 
         KeyStore keyStore = userKeyRepository.loadKeyStore(userName).orElse(null);
         if(keyStore == null) {
+
             throw new SignatureDocumentValidationException("No existen claves guadadas para el usuario: " + userName);
         }
 

@@ -22,6 +22,7 @@ public class SignDocumentBase64Service implements SignatureDocumentService {
             return Base64.getEncoder().encodeToString(signedData);
         }
         catch(Exception ex) {
+
             throw new SignatureDocumentServiceException("Error generando la 'firmaDigital' para el usuario: " + userName, ex);
         }
     }

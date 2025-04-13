@@ -4,5 +4,5 @@ import java.security.KeyPair;
 
 public interface KeyPairGenerationService {
 
-    public KeyPair generate();
+    public KeyPair generate(String userName);
 }

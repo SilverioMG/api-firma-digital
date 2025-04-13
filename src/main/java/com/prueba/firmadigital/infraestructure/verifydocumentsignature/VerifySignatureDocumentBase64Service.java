@@ -23,6 +23,7 @@ public class VerifySignatureDocumentBase64Service implements VerifySignatureDocu
             return signature.verify(digitalSignatureBytes);
         }
         catch(Exception ex) {
+
             throw new VerifySignatureDocumentServiceException("Error verificando la firma digital en documento del usuario: " + userName, ex);
         }
     }

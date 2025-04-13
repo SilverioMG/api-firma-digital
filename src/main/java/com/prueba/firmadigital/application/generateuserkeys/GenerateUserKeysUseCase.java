@@ -22,7 +22,7 @@ public class GenerateUserKeysUseCase {
     public void generateKeys(GenerateUserKeysCommand command) {
         validateCommand(command);
         String userName = command.userName();
-        KeyPair keyPair = keyPairGenerationService.generate();
+        KeyPair keyPair = keyPairGenerationService.generate(userName);
         userKeyRepository.save(userName, keyPair);
     }
 

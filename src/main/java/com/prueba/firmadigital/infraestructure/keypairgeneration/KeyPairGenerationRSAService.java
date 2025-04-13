@@ -10,7 +10,7 @@ import java.security.*;
 @Service
 public class KeyPairGenerationRSAService implements KeyPairGenerationService {
 
-    public KeyPair generate() {
+    public KeyPair generate(String userName) {
         try {
             KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
             keyPairGenerator.initialize(2048);
@@ -18,8 +18,8 @@ public class KeyPairGenerationRSAService implements KeyPairGenerationService {
             return keyPairGenerator.generateKeyPair();
         }
         catch(Exception ex) {
-            String erroMesasge = "Error generando el par de claves privada/publica: " + ex.getMessage();
-            throw new KeyPairGenerationException(erroMesasge, ex);
+
+            throw new KeyPairGenerationException("Error generando el par de claves privada/publica para el usuario " + userName, ex);
         }
     }
 }

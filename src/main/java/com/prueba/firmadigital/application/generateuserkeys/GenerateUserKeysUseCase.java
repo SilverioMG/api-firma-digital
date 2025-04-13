@@ -28,7 +28,7 @@ public class GenerateUserKeysUseCase {
 
 
     private void validateCommand(GenerateUserKeysCommand command) {
-        if(command == null) { throw new GenerateUserKeysValidationException("Valor incorrecto para 'command': " + command); }
-        if(StringUtils.isBlank(command.userName())) { throw new GenerateUserKeysValidationException("Valor incorrecto para 'userName': " + command.userName()); }
+        if(command == null) throw new GenerateUserKeysValidationException("Valor incorrecto para 'command': " + command);
+        if(StringUtils.isBlank(command.userName())) throw new GenerateUserKeysValidationException("Valor incorrecto para 'userName': " + command.userName());
     }
 }

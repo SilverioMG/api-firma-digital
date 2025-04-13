@@ -15,6 +15,7 @@ import java.security.*;
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
 import java.util.Date;
+import java.util.Optional;
 
 import org.bouncycastle.cert.jcajce.JcaX509CertificateConverter;
 import org.bouncycastle.cert.jcajce.JcaX509v3CertificateBuilder;
@@ -54,13 +55,19 @@ public class KeyStoreDao {
         Files.createDirectories(dirPath);
     }
 
-    public KeyStore loadKeyStore(String userName, String password, String keyStoreDirPath) throws Exception {
+    public Optional<KeyStore> loadKeyStore(String userName, String password, String keyStoreDirPath) throws Exception {
         KeyStore ks = KeyStore.getInstance(KEY_STORE_TYPE);
         String keyStoreUserFilePath = generateKeyStoreUserFilePath(userName, keyStoreDirPath);
+        if(Files.notExists(Paths.get(keyStoreUserFilePath))) {
+
+            return Optional.empty();
+        }
+
         try (FileInputStream fis = new FileInputStream(keyStoreUserFilePath)) {
             ks.load(fis, password.toCharArray());
         }
-        return ks;
+
+        return Optional.of(ks);
     }
 
     private X509Certificate createSelfSignedCertificate(KeyPair keyPair) throws Exception {
@@ -88,7 +95,7 @@ public class KeyStoreDao {
         return Paths.get(keyStoreDirPath, fileName).toString();
     }
 
-    private void chekcSignature(PrivateKey privateKey, PublicKey publicKey) throws Exception {
+    private void checkSignature(PrivateKey privateKey, PublicKey publicKey) throws Exception {
         String message = "Prueba de firma digital";
         Signature signature = Signature.getInstance("SHA256withRSA");
 

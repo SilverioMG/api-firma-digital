@@ -23,8 +23,8 @@ public class GenerateUserKeysController {
     public ResponseEntity<ResponseDto<Void>> generateUserKeys(@PathVariable(name = "userName") String userName) {
         GenerateUserKeysCommand command = new GenerateUserKeysCommand(userName);
         generateUserKeysUseCase.generateKeys(command);
+        ResponseDto<Void> response = new ResponseDto<>(true, "Claves generadas", null);
 
-        ResponseDto<Void> responseDto = new ResponseDto<>(true, "Claves generadas", null);
-        return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 }

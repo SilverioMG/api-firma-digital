@@ -21,7 +21,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.01:8080/api/generatekeys/user2",
+					"raw": "http://127.0.01:8080/api/generatekeys/user1",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -32,7 +32,7 @@
 					"path": [
 						"api",
 						"generatekeys",
-						"user2"
+						"user1"
 					]
 				}
 			},
